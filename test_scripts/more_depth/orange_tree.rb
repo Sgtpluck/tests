@@ -34,7 +34,7 @@ class OrangeTree
   def dies
     if @age == 100
       puts "The majestic tree has grown its last orange. As you watch over it, you remember eating its oranges, and lounging in its shade. Truly, it was a noble tree"
-      @oranges = 0
+      exit
     end
   end
 
@@ -54,5 +54,18 @@ class OrangeTree
 end
 
 
-
+  o = OrangeTree.new(95,10)
+  puts "A tree is born!"
+while true
+  puts "What would you like to do? (C)ount the oranges? Let (o)ne year pass? (P)ick an orange?"
+  action = gets.chomp.downcase
+  case action
+  when "o"
+    o.one_year_passes
+  when "c"
+    o.count_the_oranges
+  when "p"
+    o.pick_the_oranges
+  end
+end
 
