@@ -21,6 +21,7 @@ class Dragon
     passageOfTime
   end
 
+
   def putToBed
     puts 'You put ' + @name + ' to bed.'
     @asleep = true
@@ -62,6 +63,36 @@ class Dragon
       puts '...but wakes when you stop.'
     end
   end
+
+  def check_up
+    puts "How's your dragon doing?"
+    define_hunger
+    define_poopy
+  end
+
+  def define_hunger
+    if @stuffInBelly >= 8
+      puts "#{@name}'s not hungry!"
+    elsif @stuffInBelly >= 4
+      puts "#{@name}'s a little hungry, but not ready to eat you yet."
+    elsif @stuffInBelly >= 0
+      puts "#{@name}'s almost hungry enough to eat you! Better feed him, quick!"
+    end
+  end
+
+  def define_poopy
+    if @stuffInIntestine >= 8
+      puts "Uh, oh, #{@name}s about to have an accident, better walk him!"
+    elsif @stuffInIntestine >= 4
+      puts "#{@name} has to go to the bathroom, but it could wait."
+    elsif @stuffInIntestine >= 0
+      puts "#{@name}'s feeling fine. No urgency whatsoever."
+    end
+  end
+
+
+
+
 
   private
 
@@ -122,24 +153,79 @@ puts "What would you like to name your dragon?"
 name = gets.chomp
 pet = Dragon.new(name)
 
-while true
-  puts "What would you like to do with your dragon? You can (f)eed him, (t)oss him, (w)alk him, (p)ut him to bed, or (r)ock him!"
-  response = gets.chomp.downcase
-  case response
-  when "f"
-    pet.feed
-  when "t"
-    pet.toss
-  when "w"
-    pet.walk
-  when "p"
-    pet.putToBed
-  when "r"
-    pet.rock
+# while true
+#   puts "What would you like to do with your dragon? You can (f)eed him, (t)oss him, (w)alk him, (p)ut him to bed, or (r)ock him!"
+#   response = gets.chomp.downcase
+#   case response
+#   when "f"
+#     pet.feed
+#   when "t"
+#     pet.toss
+#   when "w"
+#     pet.walk
+#   when "p"
+#     pet.putToBed
+#   when "r"
+#     pet.rock
+#   end
+# end
+
+  while true
+    puts "What would you like to do with your dragon?"
+    response = gets.chomp.downcase
+    
+    basic_command = ""
+
+    [:feed, :eat, :food, :serve, :meal].each do |command|
+      if response.downcase.include? command.to_s
+        basic_command = :feed
+      end
+    end
+
+    [:run, :walk, :exercise, :move].each do |command|
+      if response.downcase.include? command.to_s
+        basic_command = :walk
+      end
+    end
+
+    [:play, :toss, :throw, :tickle].each do |command|
+      if response.downcase.include? command.to_s
+        basic_command = :toss
+      end
+    end
+
+    [:bed, :sleep, :nap].each do |command|
+      if response.downcase.include? command.to_s
+        basic_command = :putToBed
+      end
+    end
+
+    [:rock, :soothe, :placate, :pet].each do |command|
+      if response.downcase.include? command.to_s
+        basic_command = :rock
+      end
+    end
+
+    [:check, :stats, :hungry, :poopy, :doing].each do |command|
+      if response.downcase.include? command.to_s
+        basic_command = :check_up
+      end
+    end
+
+    if basic_command.empty?
+      puts "I'm sorry, you can't do that with #{@name}"
+    else
+      pet.send(basic_command)
+    end
+
+
   end
-end
 
 
+#   if !basic_command.empty?
+#     pet.send(command)
+#   end
+# end
 
 
 
