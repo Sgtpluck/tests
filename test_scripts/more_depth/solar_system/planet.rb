@@ -1,3 +1,6 @@
+require "colorize"
+require "lolcat"
+
 class Planet
   attr_accessor :colonized
   attr_reader :name, :diameter, :type, :year_length, :mass, :moons
@@ -18,8 +21,10 @@ class Planet
   end
 
   def check_planets
+    String.colors[rand(0..10)]
+    a = String.colors.sample
     puts ""
-    puts "This planet is named #{name}."
+    puts "This planet is named #{name.send(a)}."
     type_stat
     measurements
     number_of_moons
