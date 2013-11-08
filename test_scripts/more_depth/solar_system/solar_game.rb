@@ -1,7 +1,6 @@
 require "./planet.rb"
 require "./solar_system.rb"
 require "colorize"
-require "lolcat"
 
 
 number_of_planets = rand(1..5)

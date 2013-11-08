@@ -1,5 +1,4 @@
 require "colorize"
-require "lolcat"
 
 class Planet
   attr_accessor :colonized

@@ -38,7 +38,8 @@ class Solar_System
 
   def destroy_planet
     puts "Are you sure you want to destroy a planet?"
-    
+  end
+
 
 
 

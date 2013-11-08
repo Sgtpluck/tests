@@ -5,9 +5,9 @@ class Game
 
   def initialize(player_name)
     choices = ["red","blue","green","purple","black","white"]
-    @solution = [choices.sample,choices.sample,choices.sample] 
+    @solution = [choices.sample,choices.sample,choices.sample,choices.sample] 
     @player_name = player_name
-    puts "Hi #{@player_name}! There are six colors: #{"red.".red}, #{"blue".blue}, #{"green".green}, #{"purple".magenta}, #{"black".black} and #{"white".white}. The computer has picked three, in a specific order. Your task is to guess which colors in what order."
+    puts "Hi #{@player_name}! There are six colors: #{"red".red}, #{"blue".blue}, #{"green".green}, #{"purple".magenta}, #{"black".black} and #{"white".white}. The computer has picked four, in a specific order. Your task is to guess which colors in what order."
     @guesses = []
     @placement = []
   end
@@ -19,7 +19,7 @@ class Game
   def player_guess
     puts "Guess the pegs, in order. (Please separate them with a space.)"
     answer = gets.chomp.downcase.split
-      while answer.length != 3
+      until answer.length == @solution.length
         puts "That's not the right number of pegs! Please try again."
         answer = gets.chomp.downcase.split
       end
@@ -65,6 +65,13 @@ class Game
       puts "You have #{color.length} pegs that are correct in color but not in placement."
   end
 
+  def quit
+    puts "Givin' up, huh? You shouldn't feel bad at all. Quitter."
+    puts "The answer is #{answer}"
+    exit
+  end
+
+
 
     
 
@@ -102,6 +109,12 @@ while i < 10
   [:accurate, :accuracy, :correct].each do |command|
     if response.include? command.to_s
       basic_command = :accurate?
+    end
+  end
+
+  [:quit, :exit, :end, :out].each do |command|
+    if response.include? command.to_s
+      basic_command = :quit
     end
   end
 

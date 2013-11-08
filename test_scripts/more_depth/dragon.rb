@@ -171,9 +171,8 @@ pet = Dragon.new(name)
 # end
 
   while true
-    puts "What would you like to do with your dragon?"
-    response = gets.chomp.downcase
-    
+    puts "What would you like to do with your dragon?" 
+    response = gets.chomp.downcase 
     basic_command = ""
 
     [:feed, :eat, :food, :serve, :meal].each do |command|
