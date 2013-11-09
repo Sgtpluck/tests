@@ -4,32 +4,38 @@ class Calculator
   def initialize
     @nums= []
     @result = 0
-    @basic_command = ""
+    @basic_command = nil
     calc_method
     get_nums
     actual_calc
   end
 
   def actual_calc
-    result = @nums.inject(@basic_command)
-    puts @nums.join(" #{@basic_command} ") + " = #{result}"
+    if @basic_command == :sqrt
+        result = Math.sqrt(@nums[0])
+        puts "The square root of #{@nums[0]} is #{result}."
+      else
+        result = @nums.inject(@basic_command)
+        puts @nums.join(" #{@basic_command} ") + " = #{result}"
+      end
   end
+
 
   def get_nums
     if @basic_command == :sqrt
       puts "What number for which would you like to find the square root?"
       number = gets.chomp
       test_for_number(number)
-      @nums.push(number.to_i)
+      @nums.push(number.to_f)
     else
       puts "Please enter the first number."
       number = gets.chomp
       test_for_number(number)
-      @nums.push(number.to_i)
+      @nums.push(number.to_f)
       puts "Now enter the second number."
       number = gets.chomp
       test_for_number(number)
-      @nums.push(number.to_i) 
+      @nums.push(number.to_f) 
     end
   end
 
@@ -40,7 +46,8 @@ class Calculator
       Float(first_num)
       break
       rescue ArgumentError
-      puts "That's not an appropriate number. TRY AGAIN."
+      puts "If you're not going to put in an appropriate number, I'm not going to do an appropriate calculation."
+      puts "PBTHHHH"
       first_num = gets.chomp
       end
     end
@@ -83,13 +90,41 @@ class Calculator
 
     [:exponent, :exponify, :exponentiate].each do |command|
       if response.include? command.to_s
-        @basic_command = :+
+        @basic_command = :**
       end
     end
 
-    if @basic_command.empty?
-      puts "I'm sorry, I can't do that."
-    end
+    # if @basic_command.empty?
+    #   puts "I'm sorry, I can't do that."
+    # end
+
+
+    # if [:+, :add, :plus].include? response
+    #     @basic_command = :+
+    #   end
+
+    # if [:-, :subtract, :minus].include? response
+    #     @basic_command = :-
+
+    # elsif [:*, :multiply].include? response
+    #     @basic_command = :*
+    #   end
+
+    # if [:/, :divide].include? response
+    #     @basic_command = :/
+    #   end
+
+    # if [:square, :root, :squareroot].include? response
+    #     @basic_command = :sqrt
+    #   end
+
+    # if ["exponent", "exponify", "exponentiate"].include? response
+    #      @basic_command = :**
+    #    end
+
+    # if @basic_command == nil
+    #   puts "I'm sorry, I can't do that."
+    # end
   end
 
 
