@@ -58,73 +58,77 @@ class Calculator
     puts "Hi there! What would you like to do? Add, subtract, multiply, etc, etc?"
     response = gets.chomp.downcase
     
-    [:+, :add, :plus].each do |command|
-      if response.include? command.to_s
-        @basic_command = :+
-      end
-    end
+    
+    # [:+, :add, :plus].each do |command|
+    #   if response.include? command.to_s
+    #     @basic_command = :+
+    #   end
+    # end
 
-    [:-, :subtract, :minus].each do |command|
-      if response.include? command.to_s
-        @basic_command = :-
-      end
-    end
+    # [:-, :subtract, :minus].each do |command|
+    #   if response.include? command.to_s
+    #     @basic_command = :-
+    #   end
+    # end
 
-    [:*, :multiply].each do |command|
-      if response.include? command.to_s
-        @basic_command = :*
-      end
-    end
+    # [:*, :multiply].each do |command|
+    #   if response.include? command.to_s
+    #     @basic_command = :*
+    #   end
+    # end
 
-    [:/, :divide].each do |command|
-      if response.include? command.to_s
-        @basic_command = :/
-      end
-    end
+    # [:/, :divide].each do |command|
+    #   if response.include? command.to_s
+    #     @basic_command = :/
+    #   end
+    # end
 
-    [:square, :root, :squareroot].each do |command|
-      if response.include? command.to_s
-        @basic_command = :sqrt
-      end
-    end
+    # [:square, :root, :squareroot].each do |command|
+    #   if response.include? command.to_s
+    #     @basic_command = :sqrt
+    #   end
+    # end
 
-    [:exponent, :exponify, :exponentiate].each do |command|
-      if response.include? command.to_s
-        @basic_command = :**
-      end
-    end
+    # [:exponent, :exponify, :exponentiate].each do |command|
+    #   if response.include? command.to_s
+    #     @basic_command = :**
+    #   end
+    # end
 
     # if @basic_command.empty?
     #   puts "I'm sorry, I can't do that."
     # end
 
 
-    # if [:+, :add, :plus].include? response
-    #     @basic_command = :+
-    #   end
+    if ["+", "add", "plus"].include? response
+        @basic_command = :+
+      end
 
-    # if [:-, :subtract, :minus].include? response
-    #     @basic_command = :-
+    if ["-", "subtract", "minus"].include? response
+        @basic_command = :-
+        response.split("-")
+      end
 
-    # elsif [:*, :multiply].include? response
-    #     @basic_command = :*
-    #   end
+    if ["*", "multiply"].include? response
+        @basic_command = :*
+      end
 
-    # if [:/, :divide].include? response
-    #     @basic_command = :/
-    #   end
+    if ["/", "divide"].include? response
+        @basic_command = :/
+      end
 
-    # if [:square, :root, :squareroot].include? response
-    #     @basic_command = :sqrt
-    #   end
+    if ["square", "root", "squareroot"].include? response
+        @basic_command = :sqrt
+      end
 
-    # if ["exponent", "exponify", "exponentiate"].include? response
-    #      @basic_command = :**
-    #    end
+    if ["exponent", "exponify", "exponentiate"].include? response
+         @basic_command = :**
+       end
 
-    # if @basic_command == nil
-    #   puts "I'm sorry, I can't do that."
-    # end
+    if @basic_command == nil
+      puts "I'm sorry, I can't do that."
+      exit
+    end
   end
 
 
